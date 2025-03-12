@@ -32,3 +32,5 @@ def main(page: ft.Page):
     page.add(title,button_column)
 
 ft.app(target=main)
+
+#https://flet.dev/docs/controls/charts/
