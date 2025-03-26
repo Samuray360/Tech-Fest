@@ -29,21 +29,22 @@ def main(page: ft.Page):
     title = ft.Text("Physics Calculator", color="black", size=30) 
 
     # Input Fields
-    voltage_input = ft.TextField(label="Voltage (V)", width=200)
-    current_input = ft.TextField(label="Current (A)", width=200)
-    resistance_input = ft.TextField(label="Resistance (Ω)", width=200)
-    capacitances_input = ft.TextField(label="Enter capacitances (comma-separated)", width=300)
+    voltage_input = ft.TextField(label="Voltage (V)", width=200,color="black")
+    current_input = ft.TextField(label="Current (A)", width=200,color="black")
+    resistance_input = ft.TextField(label="Resistance (Ω)", width=200,color="black")
+    capacitances_input = ft.TextField(label="Enter capacitances (comma-separated)", width=300,color="black")
     
     configuration_dropdown = ft.Dropdown(
         label="Configuration",
         options=[ft.dropdown.Option("Series"), ft.dropdown.Option("Parallel")],
         value="Parallel",
-        width=200
+        width=200,
+        color="black"
     )
 
     # Result Texts
-    ohms_result_text = ft.Text("", size=14)
-    capacitance_result_text = ft.Text("", size=14)
+    ohms_result_text = ft.Text("", size=14,color="black")
+    capacitance_result_text = ft.Text("", size=14,color="black")
 
     # Calculation Functions
     def calculate_ohms_law(e):
@@ -87,8 +88,8 @@ def main(page: ft.Page):
         page.update()
 
     # Buttons
-    ohms_calculate_button = ft.ElevatedButton("Calculate", on_click=calculate_ohms_law)
-    capacitance_calculate_button = ft.ElevatedButton("Calculate", on_click=on_calculate_capacitance)
+    ohms_calculate_button = ft.ElevatedButton("Calculate", on_click=calculate_ohms_law,style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20)))
+    capacitance_calculate_button = ft.ElevatedButton("Calculate", on_click=on_calculate_capacitance,style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20)))
 
     # Pages
     home_view = ft.Container(
@@ -101,13 +102,13 @@ def main(page: ft.Page):
 
     ohms_law_page = ft.Container(
         content=ft.Column([
-            ft.Text("Ohm's Law Calculation", size=20),
+            ft.Text("Ohm's Law Calculation", size=20,color="black"),
             voltage_input,
             current_input,
             resistance_input,
             ohms_calculate_button,
             ohms_result_text,
-            ft.ElevatedButton("Back", on_click=lambda e: show_home(e))
+            ft.ElevatedButton("Back", on_click=lambda e: show_home(e),style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20)))
         ]),
         bgcolor="#FCFBF4",
         width=600,
@@ -117,7 +118,7 @@ def main(page: ft.Page):
 
     capacitance_page = ft.Container(
         content=ft.Column([
-            ft.Text("Capacitance Calculation", size=20),
+            ft.Text("Capacitance Calculation", size=20,color="black"),
             capacitances_input,
             configuration_dropdown,
             capacitance_calculate_button,
@@ -132,7 +133,7 @@ def main(page: ft.Page):
 
     resistance_page = ft.Container(
         content=ft.Column([
-            ft.Text("Resistance Calculation", size=20),
+            ft.Text("Resistance Calculation", size=20,color="black"),
             ft.TextField(label="Enter Resistance", width=200),
             ft.ElevatedButton("Back", on_click=lambda e: show_home(e))
         ]),
