@@ -123,7 +123,7 @@ def main(page: ft.Page):
             configuration_dropdown,
             capacitance_calculate_button,
             capacitance_result_text,
-            ft.ElevatedButton("Back", on_click=lambda e: show_home(e))
+            ft.ElevatedButton("Back", on_click=lambda e: show_home(e),style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20)))
         ]),
         bgcolor="#FCFBF4",
         width=600,
@@ -135,7 +135,7 @@ def main(page: ft.Page):
         content=ft.Column([
             ft.Text("Resistance Calculation", size=20,color="black"),
             ft.TextField(label="Enter Resistance", width=200),
-            ft.ElevatedButton("Back", on_click=lambda e: show_home(e))
+            ft.ElevatedButton("Back", on_click=lambda e: show_home(e),style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20)))
         ]),
         bgcolor="#FCFBF4",
         width=600,
