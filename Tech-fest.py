@@ -21,8 +21,9 @@ def calculate_capacitance(capacitances, configuration):
 def main(page: ft.Page):
     page.title = "Physics Calculator"
     page.bgcolor = "#FCFBF4"
-    page.window_height = 750
-    page.window_width = 800
+    page.window.width = 800
+    page.window.height = 800
+    page.window.resizable = False
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
 
@@ -33,14 +34,34 @@ def main(page: ft.Page):
     current_input = ft.TextField(label="Current (A)", width=200,color="black")
     resistance_input = ft.TextField(label="Resistance (Ω)", width=200,color="black")
     capacitances_input = ft.TextField(label="Enter capacitances (comma-separated)", width=300,color="black")
+    capacitance_img=ft.Image(src="Capacitancia_paralelo.png",width=300,height=200)
+    resistance_img=ft.Image(src="Resistencia_paralelo.png",width=300,height=200)
+    
+    def change_capacitance_img():
+        match configuration_dropdown.value:
+            case "Parallel":
+                capacitance_img.src= "Capacitancia_paralelo.png"
+            case "Series":
+                capacitance_img.src="Capacitancia_serie.png"
+        page.update()
     
     configuration_dropdown = ft.Dropdown(
         label="Configuration",
         options=[ft.dropdown.Option("Series"), ft.dropdown.Option("Parallel")],
         value="Parallel",
         width=200,
-        color="black"
+        color="black",
+        on_change= lambda _ : change_capacitance_img()
     )
+    
+    def change_resistance_img():
+        match configuration_dropdown.value:
+            case"Parallel":
+                resistance_img.src="Resistencia_paralelo.png" 
+            case "Series":
+                resistance_img.src="Resistencia_serie.png"
+        page.update()
+            
 
     # Result Texts
     ohms_result_text = ft.Text("", size=14,color="black")
@@ -122,6 +143,7 @@ def main(page: ft.Page):
             capacitances_input,
             configuration_dropdown,
             capacitance_calculate_button,
+            capacitance_img,
             capacitance_result_text,
             ft.ElevatedButton("Back", on_click=lambda e: show_home(e),style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20)))
         ]),
@@ -135,6 +157,7 @@ def main(page: ft.Page):
         content=ft.Column([
             ft.Text("Resistance Calculation", size=20,color="black"),
             ft.TextField(label="Enter Resistance", width=200),
+            configuration_dropdown,resistance_img,
             ft.ElevatedButton("Back", on_click=lambda e: show_home(e),style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20)))
         ]),
         bgcolor="#FCFBF4",
