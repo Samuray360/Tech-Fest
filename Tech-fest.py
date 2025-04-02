@@ -114,7 +114,7 @@ def main(page: ft.Page):
 
     # Pages
     home_view = ft.Container(
-        content=ft.Column([title]),
+        content=ft.Column([title],alignment=ft.alignment.center),
         bgcolor="#FCFBF4",
         width=600,
         height=600,
@@ -130,7 +130,7 @@ def main(page: ft.Page):
             ohms_calculate_button,
             ohms_result_text,
             ft.ElevatedButton("Back", on_click=lambda e: show_home(e),style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20)))
-        ]),
+        ],alignment=ft.alignment.center),
         bgcolor="#FCFBF4",
         width=600,
         height=600,
@@ -146,7 +146,7 @@ def main(page: ft.Page):
             capacitance_img,
             capacitance_result_text,
             ft.ElevatedButton("Back", on_click=lambda e: show_home(e),style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20)))
-        ]),
+        ],alignment=ft.alignment.center),
         bgcolor="#FCFBF4",
         width=600,
         height=600,
