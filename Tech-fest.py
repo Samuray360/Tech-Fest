@@ -17,6 +17,23 @@ def calculate_capacitance(capacitances, configuration):
 
     return "Error: Configuration must be 'Series' or 'Parallel'."
 
+def calculate_resistance(resistances, configuration):
+    """Calculates total resistance based on configuration."""
+    if not resistances:
+        return "Error: At least one resistance value is required."
+
+    for r in resistances:
+        if r <= 0:
+            return "Error: All resistance values must be positive."
+
+    if configuration == "Parallel":
+        return 1.0 / sum(1.0 / r for r in resistances)
+    
+    elif configuration == "Series":
+        return sum(resistances)
+
+    return "Error: Configuration must be 'Series' or 'Parallel'."
+
 
 def main(page: ft.Page):
     page.title = "Physics Calculator"
