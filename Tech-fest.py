@@ -38,8 +38,8 @@ def calculate_resistance(resistances, configuration):
 def main(page: ft.Page):
     page.title = "Physics Calculator"
     page.bgcolor = "#FCFBF4"
-    page.window.width = 800
-    page.window.height = 800
+    page.window.width = 500
+    page.window.height = 600
     page.window.resizable = False
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
@@ -152,11 +152,12 @@ def main(page: ft.Page):
 
     # Pages
     home_view = ft.Container(
-        content=ft.Column([title],alignment=ft.alignment.center),
+        content=ft.Column([title]),
         bgcolor="#FCFBF4",
-        width=600,
-        height=600,
-        visible=True
+        width=page.width,
+        height=page.height,
+        visible=True,
+        alignment=ft.alignment.center
     )
 
     ohms_law_page = ft.Container(
@@ -170,9 +171,10 @@ def main(page: ft.Page):
             ft.ElevatedButton("Back", on_click=lambda e: show_home(e),style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20)))
         ],alignment=ft.alignment.center),
         bgcolor="#FCFBF4",
-        width=600,
-        height=600,
-        visible=False
+        width=page.width,
+        height=page.height,
+        visible=False,
+        alignment=ft.alignment.center
     )
 
     capacitance_page = ft.Container(
@@ -186,9 +188,10 @@ def main(page: ft.Page):
             ft.ElevatedButton("Back", on_click=lambda e: show_home(e),style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20)))
         ],alignment=ft.alignment.center),
         bgcolor="#FCFBF4",
-        width=600,
-        height=600,
-        visible=False
+        width=page.width,
+        height=page.height,
+        visible=False,
+        alignment=ft.alignment.center
     )
 
     resistance_page = ft.Container(
@@ -202,9 +205,10 @@ def main(page: ft.Page):
             ft.ElevatedButton("Back", on_click=lambda e: show_home(e),style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20)))
         ],alignment=ft.alignment.center),
         bgcolor="#FCFBF4",
-        width=600,
-        height=600,
-        visible=False
+        width=page.width,
+        height=page.height,
+        visible=False,
+        alignment=ft.alignment.center
     )
 
     # Navigation Functions
