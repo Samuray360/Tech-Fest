@@ -49,8 +49,9 @@ def main(page: ft.Page):
     # Input Fields
     voltage_input = ft.TextField(label="Voltage (V)", width=200,color="black")
     current_input = ft.TextField(label="Current (A)", width=200,color="black")
+    resistance_input = ft.TextField(label="Resistance (Ω)", width=200,color="black")
     capacitances_input = ft.TextField(label="Enter capacitances (comma-separated)", width=300,color="black")
-    resistance_input = ft.TextField(label="Enter resistances (comma-separated)", width=300,color="black")
+    resistances_input = ft.TextField(label="Enter resistances (comma-separated)", width=300,color="black")
     capacitance_img=ft.Image(src="Capacitancia_paralelo.png",width=300,height=200)
     resistance_img=ft.Image(src="Resistencia_paralelo.png",width=300,height=200)
     
@@ -135,7 +136,7 @@ def main(page: ft.Page):
         page.update()
     def on_calculate_resistance(e):
         try:
-            resistances = [float(r.strip()) for r in resistance_input.value.split(",")]
+            resistances = [float(r.strip()) for r in resistances_input.value.split(",")]
             result = calculate_resistance(resistances, configuration_dropdown_r.value)
 
             resistance_result_text.value = f"Total Resistance: {result:.2f} F" if isinstance(result, float) else result
@@ -193,7 +194,7 @@ def main(page: ft.Page):
     resistance_page = ft.Container(
         content=ft.Column([
             ft.Text("Resistance Calculation", size=20,color="black"),
-            resistance_input,
+            resistances_input,
             configuration_dropdown_r,
             resistance_calculate_button,
             resistance_img,
