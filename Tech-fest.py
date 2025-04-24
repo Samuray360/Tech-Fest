@@ -123,7 +123,6 @@ def main(page: ft.Page):
             ohms_result_text.value = "Error: Invalid input"
         
         page.update()
-
     def on_calculate_capacitance(e):
         try:
             capacitances = [float(c.strip()) for c in capacitances_input.value.split(",")]
@@ -152,7 +151,7 @@ def main(page: ft.Page):
 
     # Pages
     home_view = ft.Container(
-        content=ft.Column([title]),
+        content=ft.Column([title],alignment=ft.alignment.center),
         bgcolor="#FCFBF4",
         width=page.width,
         height=page.height,
