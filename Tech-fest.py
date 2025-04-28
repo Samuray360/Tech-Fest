@@ -54,7 +54,47 @@ def main(page: ft.Page):
     resistances_input = ft.TextField(label="Enter resistances (comma-separated)", width=300,color="black")
     capacitance_img=ft.Image(src="Capacitancia_paralelo.png",width=300,height=200)
     resistance_img=ft.Image(src="Resistencia_paralelo.png",width=300,height=200)
+
+    # Text explanations
+    ohmslaw_explanation= ft.Container(
+                ft.Text("Ohm's Law", size=24, weight="bold"),
+                ft.Text("Ohm’s Law relates voltage (V), current (I), and resistance (R) in a circuit."),
+                ft.Text("Formula: V = I × R"),bgcolor="#849bff",visible=False
+                )
+    Capacitance_explanation=ft.Container(
+            ft.Text("Capacitance", size=24, weight="bold"),
+            ft.Text("Capacitance is the ability to store electric charge per unit voltage."),
+            ft.Text("Formula: C = Q / V"),
+            bgcolor="#849bff",visible=False
+            )
     
+    Resistance_explanation=ft.Container(
+                ft.Text("Resistance", size=24, weight="bold"),
+                ft.Text("Resistance measures how much a material opposes electric current."),
+                ft.Text("Formula: R = ρ × (L / A)"),
+                bgcolor="#849bff",visible=False
+    )
+    vectors_explanation=ft.Container(
+                ft.Text("Vectors", size=24, weight="bold"),
+                ft.Text("Vectors have both magnitude and direction."),
+                ft.Text("Magnitude Formula: |v| = √(vx² + vy² + vz²)"),
+                ft.Text("Dot Product: A • B = AxBx + AyBy + AzBz"),
+                ft.Text("Cross Product: A × B = (AyBz - AzBy)i - (AxBz - AzBx)j + (AxBy - AyBx)k"),
+                bgcolor="#849bff",visible=False
+    )
+    magneticfield_explanation=ft.Container(
+                ft.Text("Magnetic Field", size=24, weight="bold"),
+                ft.Text("The magnetic field describes the magnetic influence of electric currents."),
+                ft.Text("Formula (Straight Wire): B = (μ₀ × I) / (2πr)"),
+                bgcolor="#849bff",visible=False
+    )
+    electricfield_explanation=ft.Container(
+                ft.Text("Electric Field", size=24, weight="bold"),
+                ft.Text("Electric fields show the force per unit charge in space."),
+                ft.Text("Formula (Point Charge): E = kQ / r²"),
+                bgcolor="#849bff",visible=False
+    )
+
     def change_capacitance_img():
         match configuration_dropdown.value:
             case "Parallel":
@@ -168,6 +208,7 @@ def main(page: ft.Page):
             voltage_input,
             current_input,
             resistance_input,
+            ohmslaw_explanation,
             ohms_calculate_button,
             ohms_result_text,
             ft.ElevatedButton("Back", on_click=lambda e: show_home(e),style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20)))
@@ -185,6 +226,7 @@ def main(page: ft.Page):
             capacitances_input,
             configuration_dropdown,
             capacitance_calculate_button,
+            Capacitance_explanation,
             capacitance_img,
             capacitance_result_text,
             ft.ElevatedButton("Back", on_click=lambda e: show_home(e),style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20)))
@@ -203,6 +245,7 @@ def main(page: ft.Page):
             configuration_dropdown_r,
             resistance_calculate_button,
             resistance_img,
+            Resistance_explanation,
             resistance_result_text,
             ft.ElevatedButton("Back", on_click=lambda e: show_home(e),style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20)))
         ],alignment=ft.alignment.center),
@@ -217,6 +260,7 @@ def main(page: ft.Page):
         content=ft.Column([
             ft.Text("Vectors Calculation", size=20,color="black"),
             vectors_calculate_button,
+            vectors_explanation,
             ft.ElevatedButton("Back", on_click=lambda e: show_home(e),style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20)))
         ],alignment=ft.alignment.center),
         bgcolor="#FCFBF4",
@@ -230,6 +274,7 @@ def main(page: ft.Page):
         content=ft.Column([
             ft.Text("Magnetic Field Calculation", size=20,color="black"),
            magneticfield_calculate_button,
+           magneticfield_explanation,
             ft.ElevatedButton("Back", on_click=lambda e: show_home(e),style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20)))
         ],alignment=ft.alignment.center),
         bgcolor="#FCFBF4",
@@ -243,6 +288,7 @@ def main(page: ft.Page):
         content=ft.Column([
             ft.Text("Electric Field Calculation", size=20,color="black"),
             electricfield_calculate_button,
+            electricfield_explanation,
             ft.ElevatedButton("Back", on_click=lambda e: show_home(e),style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20)))
         ],alignment=ft.alignment.center),
         bgcolor="#FCFBF4",
