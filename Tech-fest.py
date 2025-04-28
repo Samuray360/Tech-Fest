@@ -148,7 +148,9 @@ def main(page: ft.Page):
     ohms_calculate_button = ft.ElevatedButton("Calculate", on_click=calculate_ohms_law,style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20)))
     capacitance_calculate_button = ft.ElevatedButton("Calculate", on_click=on_calculate_capacitance,style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20)))
     resistance_calculate_button = ft.ElevatedButton("Calculate", on_click=on_calculate_resistance,style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20)))
-
+    vectors_calculate_button = ft.ElevatedButton("Calculate", on_click=on_calculate_resistance,style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20)))
+    magneticfield_calculate_button = ft.ElevatedButton("Calculate", on_click=on_calculate_resistance,style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20)))
+    
     # Pages
     home_view = ft.Container(
         content=ft.Column([title],alignment=ft.alignment.center),
@@ -209,13 +211,42 @@ def main(page: ft.Page):
         visible=False,
         alignment=ft.alignment.center
     )
+    
+    vectors_page = ft.Container(
+        content=ft.Column([
+            ft.Text("Vectors Calculation", size=20,color="black"),
+            vectors_calculate_button,
+            ft.ElevatedButton("Back", on_click=lambda e: show_home(e),style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20)))
+        ],alignment=ft.alignment.center),
+        bgcolor="#FCFBF4",
+        width=page.width,
+        height=page.height,
+        visible=False,
+        alignment=ft.alignment.center
+    )
+    
+    magneticfield_page = ft.Container(
+        content=ft.Column([
+            ft.Text("Magnetic Field Calculation", size=20,color="black"),
+           magneticfield_calculate_button,
+            ft.ElevatedButton("Back", on_click=lambda e: show_home(e),style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20)))
+        ],alignment=ft.alignment.center),
+        bgcolor="#FCFBF4",
+        width=page.width,
+        height=page.height,
+        visible=False,
+        alignment=ft.alignment.center
+    )
 
+    
     # Navigation Functions
     def show_home(e):
         home_view.visible = True
         ohms_law_page.visible = False
         capacitance_page.visible = False
         resistance_page.visible = False
+        magneticfield_page.visible=False
+        vectors_page.visible=False
         page.update()
 
     def show_ohms_law(e):
@@ -223,6 +254,8 @@ def main(page: ft.Page):
         ohms_law_page.visible = True
         capacitance_page.visible = False
         resistance_page.visible = False
+        magneticfield_page.visible=False
+        vectors_page.visible=False
         page.update()
 
     def show_capacitance(e):
@@ -230,6 +263,8 @@ def main(page: ft.Page):
         ohms_law_page.visible = False
         capacitance_page.visible = True
         resistance_page.visible = False
+        magneticfield_page.visible=False
+        vectors_page.visible=False
         page.update()
 
     def show_resistance(e):
@@ -237,8 +272,29 @@ def main(page: ft.Page):
         ohms_law_page.visible = False
         capacitance_page.visible = False
         resistance_page.visible = True
+        magneticfield_page.visible=False
+        vectors_page.visible=False
         page.update()
 
+    def show_vectors(e):
+        home_view.visible = False
+        ohms_law_page.visible = False
+        capacitance_page.visible = False
+        resistance_page.visible = False
+        magneticfield_page.visible=False
+        vectors_page.visible=True
+        page.update()
+    
+    def show_magneticfield(e):
+        home_view.visible = False
+        ohms_law_page.visible = False
+        capacitance_page.visible = False
+        resistance_page.visible = False
+        vectors_page.visible=False
+        magneticfield_page.visible=True
+
+        page.update()
+    
     # Navigation Buttons
     ohms_law_button = ft.ElevatedButton(
         "Ohm's Law", on_click=show_ohms_law, width=200, height=50,
@@ -252,11 +308,19 @@ def main(page: ft.Page):
         "Resistance", on_click=show_resistance, width=200, height=50,
         style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20))
     )
-
-    button_column = ft.Column([ohms_law_button, capacitance_button, resistance_button], spacing=40)
+    vectors_button = ft.ElevatedButton(
+        "Vectors", on_click=show_vectors, width=200, height=50,
+        style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20))
+    )
+    magneticfield_button = ft.ElevatedButton(
+        "Magnetic Field", on_click=show_magneticfield, width=200, height=50,
+        style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20))
+    )
+    
+    button_column = ft.Column([ohms_law_button, capacitance_button, resistance_button,vectors_button,magneticfield_button], spacing=40)
     home_view.content.controls.append(button_column)
 
-    views = ft.Stack(controls=[home_view, ohms_law_page, capacitance_page, resistance_page])
+    views = ft.Stack(controls=[home_view, ohms_law_page, capacitance_page, resistance_page,vectors_page,magneticfield_page])
     page.add(views)
 
 ft.app(target=main)
