@@ -57,41 +57,40 @@ def main(page: ft.Page):
 
     # Text explanations
     ohmslaw_explanation= ft.Container(
-                ft.Text("Ohm's Law", size=24, weight="bold"),
+                content=(ft.Text("Ohm's Law", size=24, weight="bold"),
                 ft.Text("Ohm’s Law relates voltage (V), current (I), and resistance (R) in a circuit."),
-                ft.Text("Formula: V = I × R"),bgcolor="#849bff",visible=False
+                ft.Text("Formula: V = I × R")),bgcolor="#849bff",visible=False
                 )
     Capacitance_explanation=ft.Container(
-            ft.Text("Capacitance", size=24, weight="bold"),
+            content=(ft.Text("Capacitance", size=24, weight="bold"),
             ft.Text("Capacitance is the ability to store electric charge per unit voltage."),
-            ft.Text("Formula: C = Q / V"),
+            ft.Text("Formula: C = Q / V")),
             bgcolor="#849bff",visible=False
             )
-    
     Resistance_explanation=ft.Container(
-                ft.Text("Resistance", size=24, weight="bold"),
+                content=(ft.Text("Resistance", size=24, weight="bold"),
                 ft.Text("Resistance measures how much a material opposes electric current."),
-                ft.Text("Formula: R = ρ × (L / A)"),
+                ft.Text("Formula: R = ρ × (L / A)")),
                 bgcolor="#849bff",visible=False
     )
     vectors_explanation=ft.Container(
-                ft.Text("Vectors", size=24, weight="bold"),
+                content=(ft.Text("Vectors", size=24, weight="bold"),
                 ft.Text("Vectors have both magnitude and direction."),
                 ft.Text("Magnitude Formula: |v| = √(vx² + vy² + vz²)"),
                 ft.Text("Dot Product: A • B = AxBx + AyBy + AzBz"),
-                ft.Text("Cross Product: A × B = (AyBz - AzBy)i - (AxBz - AzBx)j + (AxBy - AyBx)k"),
+                ft.Text("Cross Product: A × B = (AyBz - AzBy)i - (AxBz - AzBx)j + (AxBy - AyBx)k")),
                 bgcolor="#849bff",visible=False
     )
     magneticfield_explanation=ft.Container(
-                ft.Text("Magnetic Field", size=24, weight="bold"),
+              content=(ft.Text("Magnetic Field", size=24, weight="bold"),
                 ft.Text("The magnetic field describes the magnetic influence of electric currents."),
-                ft.Text("Formula (Straight Wire): B = (μ₀ × I) / (2πr)"),
+                ft.Text("Formula (Straight Wire): B = (μ₀ × I) / (2πr)")),
                 bgcolor="#849bff",visible=False
     )
     electricfield_explanation=ft.Container(
-                ft.Text("Electric Field", size=24, weight="bold"),
+                content=(ft.Text("Electric Field", size=24, weight="bold"),
                 ft.Text("Electric fields show the force per unit charge in space."),
-                ft.Text("Formula (Point Charge): E = kQ / r²"),
+                ft.Text("Formula (Point Charge): E = kQ / r²")),
                 bgcolor="#849bff",visible=False
     )
 
