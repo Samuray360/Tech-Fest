@@ -94,6 +94,37 @@ def main(page: ft.Page):
                 bgcolor="#849bff",visible=False
     )
 
+    def show_explanation(explanation):
+        match explanation:
+            case "ohms_law":
+                ohmslaw_explanation.visible=True
+            case "capacitance":
+                Capacitance_explanation.visible=True
+            case "resistance":
+                Resistance_explanation.visible=True
+            case "vectors":
+                vectors_explanation.visible=True
+            case "magneticfield":
+                magneticfield_explanation.visible=True
+            case "electricfield":
+                ohmslaw_explanation.visible=True
+    def hide_explanation():
+                ohmslaw_explanation.visible=False
+            
+                Capacitance_explanation.visible=False
+            
+                Resistance_explanation.visible=False
+            
+                vectors_explanation.visible=False
+           
+                magneticfield_explanation.visible=False
+            
+                ohmslaw_explanation.visible=False
+
+    hide_button=ft.ElevatedButton("Hide", on_click=hide_explanation,style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20)))
+    
+
+
     def change_capacitance_img():
         match configuration_dropdown.value:
             case "Parallel":
@@ -126,7 +157,6 @@ def main(page: ft.Page):
             case "Series":
                 resistance_img.src="Resistencia_serie.png"
         page.update()
-            
 
     # Result Texts
     ohms_result_text = ft.Text("", size=14,color="black")
