@@ -57,40 +57,41 @@ def main(page: ft.Page):
 
     # Text explanations
     ohmslaw_explanation= ft.Container(
-                content=(ft.Text("Ohm's Law", size=24, weight="bold"),
-                ft.Text("Ohm’s Law relates voltage (V), current (I), and resistance (R) in a circuit."),
-                ft.Text("Formula: V = I × R")),bgcolor="#849bff",visible=False
+                content=ft.Column([ft.Text("Ohm's Law", size=24, weight="bold"),
+                ft.Text("Ohm's Law relates voltage (V), current (I), and resistance (R) in a circuit."),
+                ft.Text("Formula: V = I x R")]),
+                bgcolor="#849bff",visible=False
                 )
     Capacitance_explanation=ft.Container(
-            content=(ft.Text("Capacitance", size=24, weight="bold"),
-            ft.Text("Capacitance is the ability to store electric charge per unit voltage."),
-            ft.Text("Formula: C = Q / V")),
-            bgcolor="#849bff",visible=False
-            )
+                content=ft.Column([ft.Text("Capacitance", size=24, weight="bold"),
+                ft.Text("Capacitance is the ability to store electric charge per unit voltage."),
+                ft.Text("Formula: C = Q / V")]),
+                bgcolor="#849bff",visible=False
+                )
     Resistance_explanation=ft.Container(
-                content=(ft.Text("Resistance", size=24, weight="bold"),
+                content=ft.Column([ft.Text("Resistance", size=24, weight="bold"),
                 ft.Text("Resistance measures how much a material opposes electric current."),
-                ft.Text("Formula: R = ρ × (L / A)")),
+                ft.Text("Formula: R = p x (L / A)")]),
                 bgcolor="#849bff",visible=False
     )
     vectors_explanation=ft.Container(
-                content=(ft.Text("Vectors", size=24, weight="bold"),
+                content=ft.Column([ft.Text("Vectors", size=24, weight="bold"),
                 ft.Text("Vectors have both magnitude and direction."),
                 ft.Text("Magnitude Formula: |v| = √(vx² + vy² + vz²)"),
                 ft.Text("Dot Product: A • B = AxBx + AyBy + AzBz"),
-                ft.Text("Cross Product: A × B = (AyBz - AzBy)i - (AxBz - AzBx)j + (AxBy - AyBx)k")),
+                ft.Text("Cross Product: A x B = (AyBz - AzBy)i - (AxBz - AzBx)j + (AxBy - AyBx)k")]),
                 bgcolor="#849bff",visible=False
     )
     magneticfield_explanation=ft.Container(
-              content=(ft.Text("Magnetic Field", size=24, weight="bold"),
+                content=ft.Column([ft.Text("Magnetic Field", size=24, weight="bold"),
                 ft.Text("The magnetic field describes the magnetic influence of electric currents."),
-                ft.Text("Formula (Straight Wire): B = (μ₀ × I) / (2πr)")),
+                ft.Text("Formula (Straight Wire): B = (μ₀ × I) / (2πr)")]),
                 bgcolor="#849bff",visible=False
     )
     electricfield_explanation=ft.Container(
-                content=(ft.Text("Electric Field", size=24, weight="bold"),
+                content=ft.Column([ft.Text("Electric Field", size=24, weight="bold"),
                 ft.Text("Electric fields show the force per unit charge in space."),
-                ft.Text("Formula (Point Charge): E = kQ / r²")),
+                ft.Text("Formula (Point Charge): E = kQ / r²")]),
                 bgcolor="#849bff",visible=False
     )
 
@@ -108,6 +109,7 @@ def main(page: ft.Page):
                 magneticfield_explanation.visible=True
             case "electricfield":
                 ohmslaw_explanation.visible=True
+        
     def hide_explanation():
                 ohmslaw_explanation.visible=False
             
@@ -123,7 +125,14 @@ def main(page: ft.Page):
 
     hide_button=ft.ElevatedButton("Hide", on_click=hide_explanation,style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20)))
     
-
+    show_explanation_button=ft.ElevatedButton("Hide", on_click=show_explanation,style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20)))
+    
+    ohmslaw_explanation.content.controls.append(hide_button)
+    Capacitance_explanation.content.controls.append(hide_button)
+    Resistance_explanation.content.controls.append(hide_button)
+    vectors_explanation.content.controls.append(hide_button)
+    magneticfield_explanation.content.controls.append(hide_button)
+    electricfield_explanation.content.controls.append(hide_button)
 
     def change_capacitance_img():
         match configuration_dropdown.value:
@@ -240,6 +249,7 @@ def main(page: ft.Page):
             ohmslaw_explanation,
             ohms_calculate_button,
             ohms_result_text,
+            
             ft.ElevatedButton("Back", on_click=lambda e: show_home(e),style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20)))
         ],alignment=ft.alignment.center),
         bgcolor="#FCFBF4",
@@ -426,7 +436,17 @@ def main(page: ft.Page):
         style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20))
     )
     
-    button_column = ft.Row([ft.Column([ohms_law_button, capacitance_button, resistance_button]),ft.Column([vectors_button,magneticfield_button,electricfield_button])], spacing=40)
+    button_column = ft.Row([
+        ft.Column([
+            ohms_law_button,
+            capacitance_button,
+            resistance_button,
+            vectors_button,
+            magneticfield_button,
+            electricfield_button,
+        ])
+    ])
+
     home_view.content.controls.append(button_column)
 
     views = ft.Stack(controls=[home_view, ohms_law_page, capacitance_page, resistance_page,vectors_page,magneticfield_page,electricfield_page])
