@@ -117,14 +117,24 @@ def main(page: ft.Page):
                 ft.Text("Formula: R = p x (L / A)")]),
                 bgcolor="#849bff",visible=False
     )
-    vectors_explanation=ft.Container(
-                content=ft.Column([ft.Text("Vectors", size=24, weight="bold"),
-                ft.Text("Vectors have both magnitude and direction."),
-                ft.Text("Magnitude Formula: |v| = √(vx² + vy² + vz²)"),
-                ft.Text("Dot Product: A • B = AxBx + AyBy + AzBz"),
-                ft.Text("Cross Product: A x B = (AyBz - AzBy)i - (AxBz - AzBx)j + (AxBy - AyBx)k")]),
-                bgcolor="#849bff",visible=False
-    )
+    electric_force_explanation = ft.Container(
+    content=ft.Column([
+        ft.Text("Electric Force", size=24, weight="bold"),
+        ft.Text("Electric force is the interaction between charged particles."),
+        ft.Text("Like charges repel; opposite charges attract."),
+        ft.Text("Coulomb's Law: F = k * |q1 * q2| / r²"),
+        ft.Text("Where:"),
+        ft.Text("• F is the electric force"),
+        ft.Text("• q1 and q2 are the charges"),
+        ft.Text("• r is the distance between charges"),
+        ft.Text("• k ≈ 8.99 × 10⁹ N·m²/C² (Coulomb's constant)")
+    ]),
+    bgcolor="#849bff",
+    visible=False,
+    padding=10,
+    border_radius=10
+)
+
     magneticfield_explanation=ft.Container(
                 content=ft.Column([ft.Text("Magnetic Field", size=24, weight="bold"),
                 ft.Text("The magnetic field describes the magnetic influence of electric currents."),
@@ -137,13 +147,13 @@ def main(page: ft.Page):
                 ft.Text("Formula (Point Charge): E = F/Q")]),
                 bgcolor="#849bff",visible=False
     )
-    explanation_add=ft.Stack(controls=[ohmslaw_explanation,Capacitance_explanation,Resistance_explanation,vectors_explanation,magneticfield_explanation,electricfield_explanation])
+    explanation_add=ft.Stack(controls=[ohmslaw_explanation,Capacitance_explanation,Resistance_explanation,electric_force_explanation,magneticfield_explanation,electricfield_explanation])
     
     explanations = {
         "ohms_law": ohmslaw_explanation,
         "capacitance": Capacitance_explanation,
         "resistance": Resistance_explanation,
-        "vectors": vectors_explanation,
+        "electric force": electric_force_explanation,
         "magneticfield": magneticfield_explanation,
         "electricfield": electricfield_explanation
     }
@@ -191,7 +201,7 @@ def main(page: ft.Page):
     ohmslaw_explanation.content.controls.append(hide_button)
     Capacitance_explanation.content.controls.append(hide_button)
     Resistance_explanation.content.controls.append(hide_button)
-    vectors_explanation.content.controls.append(hide_button)
+    electric_force_explanation.content.controls.append(hide_button)
     magneticfield_explanation.content.controls.append(hide_button)
     electricfield_explanation.content.controls.append(hide_button)
 
@@ -262,6 +272,7 @@ def main(page: ft.Page):
             ohms_result_text.value = "Error: Invalid input"
         
         page.update()
+        
     def on_calculate_capacitance(e):
         try:
             capacitances = [float(c.strip()) for c in capacitances_input.value.split(",")]
@@ -287,7 +298,7 @@ def main(page: ft.Page):
     ohms_calculate_button = ft.ElevatedButton("Calculate", on_click=calculate_ohms_law,style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20)))
     capacitance_calculate_button = ft.ElevatedButton("Calculate", on_click=on_calculate_capacitance,style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20)))
     resistance_calculate_button = ft.ElevatedButton("Calculate", on_click=on_calculate_resistance,style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20)))
-    vectors_calculate_button = ft.ElevatedButton("Calculate", on_click=on_calculate_resistance,style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20)))
+    electric_force_calculate_button = ft.ElevatedButton("Calculate", on_click=on_calculate_resistance,style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20)))
     magneticfield_calculate_button = ft.ElevatedButton("Calculate", on_click=on_calculate_resistance,style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20)))
     electricfield_calculate_button = ft.ElevatedButton("Calculate", on_click=on_calculate_resistance,style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20)))
     
@@ -359,11 +370,11 @@ def main(page: ft.Page):
         alignment=ft.alignment.center
     )
     
-    vectors_page = ft.Container(
+    electric_force_explanation_page = ft.Container(
         content=ft.Column([
-            ft.Text("Vectors Calculation", size=20,color="black"),
-            vectors_calculate_button,
-            vectors_explanation,
+            ft.Text("Electric Force Calculation", size=20,color="black"),
+            electric_force_calculate_button,
+            electric_force_explanation,
             show_explanation_button,
             ft.ElevatedButton("Back", on_click=lambda e: show_home(e),style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20)))
         ],alignment=ft.alignment.center),
@@ -413,7 +424,7 @@ def main(page: ft.Page):
         resistance_page.visible = False
         magneticfield_page.visible=False
         electricfield_page.visible=False
-        vectors_page.visible=False
+        electric_force_explanation_page.visible=False
         page.update()
 
     def show_ohms_law(e):
@@ -424,7 +435,7 @@ def main(page: ft.Page):
         resistance_page.visible = False
         magneticfield_page.visible=False
         electricfield_page.visible=False
-        vectors_page.visible=False
+        electric_force_explanation_page.visible=False
         page.update()
 
     def show_capacitance(e):
@@ -435,7 +446,7 @@ def main(page: ft.Page):
         resistance_page.visible = False
         magneticfield_page.visible=False
         electricfield_page.visible=False
-        vectors_page.visible=False
+        electric_force_explanation_page.visible=False
         page.update()
 
     def show_resistance(e):
@@ -446,18 +457,18 @@ def main(page: ft.Page):
         resistance_page.visible = True
         magneticfield_page.visible=False
         electricfield_page.visible=False
-        vectors_page.visible=False
+        electric_force_explanation_page.visible=False
         page.update()
 
-    def show_vectors(e):
-        explanation="vectors"
+    def show_electric_force(e):
+        explanation="electric force"
         home_view.visible = False
         ohms_law_page.visible = False
         capacitance_page.visible = False
         resistance_page.visible = False
         magneticfield_page.visible=False
         electricfield_page.visible=False
-        vectors_page.visible=True
+        electric_force_explanation_page.visible=True
         page.update()
     
     def show_magneticfield(e):
@@ -466,7 +477,7 @@ def main(page: ft.Page):
         ohms_law_page.visible = False
         capacitance_page.visible = False
         resistance_page.visible = False
-        vectors_page.visible=False
+        electric_force_explanation_page.visible=False
         electricfield_page.visible=False
         magneticfield_page.visible=True
 
@@ -478,7 +489,7 @@ def main(page: ft.Page):
         ohms_law_page.visible = False
         capacitance_page.visible = False
         resistance_page.visible = False
-        vectors_page.visible=False
+        electric_force_explanation_page.visible=False
         magneticfield_page.visible=False
         electricfield_page.visible=True
 
@@ -497,8 +508,8 @@ def main(page: ft.Page):
         "Resistance", on_click=show_resistance, width=200, height=50,
         style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20))
     )
-    vectors_button = ft.ElevatedButton(
-        "Vectors", on_click=show_vectors, width=200, height=50,
+    electric_force_button = ft.ElevatedButton(
+        "Electric Force", on_click=show_electric_force, width=200, height=50,
         style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20))
     )
     magneticfield_button = ft.ElevatedButton(
@@ -515,7 +526,7 @@ def main(page: ft.Page):
             ohms_law_button,
             capacitance_button,
             resistance_button,
-            vectors_button,
+            electric_force_button,
             magneticfield_button,
             electricfield_button,
         ])
@@ -523,7 +534,7 @@ def main(page: ft.Page):
 
     home_view.content.controls.append(button_column)
 
-    views = ft.Stack(controls=[home_view, ohms_law_page, capacitance_page, resistance_page,vectors_page,magneticfield_page,electricfield_page])
+    views = ft.Stack(controls=[home_view, ohms_law_page, capacitance_page, resistance_page,electric_force_explanation_page,magneticfield_page,electricfield_page])
     final_view=ft.Stack(controls=[views,explanation_add])
     page.add(final_view)
     
