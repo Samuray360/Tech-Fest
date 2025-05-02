@@ -17,6 +17,20 @@ def calculate_capacitance(capacitances, configuration):
 
     return "Error: Configuration must be 'Series' or 'Parallel'."
 
+def calculate_magnetic_field(current, distance):
+    """Calculates the magnetic field due to a straight current-carrying wire."""
+    mu_0 = 1.2566370614359173e-6  # Permeability of free space in T·m/A
+    if not isinstance(current, (int, float)) or not isinstance(distance, (int, float)):
+        return "Error: Current and distance must be numeric."
+
+    if distance <= 0:
+        return "Error: Distance must be positive."
+
+    try:
+        return (mu_0 * current) / (2 * 3.141592653589793 * distance)
+    except Exception:
+        return "Error: Invalid current or distance."
+
 def calculate_electric_force(charge1, charge2, distance):
     """Calculates the electric force between two point charges."""
     k = 8.99e9  # Coulomb's constant in N·m²/C²
@@ -120,7 +134,7 @@ def main(page: ft.Page):
     electricfield_explanation=ft.Container(
                 content=ft.Column([ft.Text("Electric Field", size=24, weight="bold"),
                 ft.Text("Electric fields show the force per unit charge in space."),
-                ft.Text("Formula (Point Charge): E = kQ / r²")]),
+                ft.Text("Formula (Point Charge): E = F/Q")]),
                 bgcolor="#849bff",visible=False
     )
     explanation_add=ft.Stack(controls=[ohmslaw_explanation,Capacitance_explanation,Resistance_explanation,vectors_explanation,magneticfield_explanation,electricfield_explanation])
