@@ -17,6 +17,35 @@ def calculate_capacitance(capacitances, configuration):
 
     return "Error: Configuration must be 'Series' or 'Parallel'."
 
+def calculate_electric_force(charge1, charge2, distance):
+    """Calculates the electric force between two point charges."""
+    k = 8.99e9  # Coulomb's constant in N·m²/C²
+    if not isinstance(charge1, (int, float)) or not isinstance(charge2, (int, float)) or not isinstance(distance, (int, float)):
+        return "Error: Charges and distance must be numeric."
+
+    if distance <= 0:
+        return "Error: Distance must be positive."
+
+    try:
+        return k * abs(charge1 * charge2) / (distance ** 2)
+    except Exception:
+        return "Error: Invalid charges or distance."
+
+def calculate_electric_field(charge, distance):
+    """Calculates the electric field due to a point charge."""
+    k = 8.99e9  # Coulomb's constant in N·m²/C²
+    if not isinstance(charge, (int, float)) or not isinstance(distance, (int, float)):
+        return "Error: Charge and distance must be numeric."
+
+    if distance <= 0:
+        return "Error: Distance must be positive."
+
+    try:
+        return k * charge / (distance ** 2)
+    except Exception:
+        return "Error: Invalid charge or distance."
+
+
 def calculate_resistance(resistances, configuration):
     """Calculates total resistance based on configuration."""
     if not resistances:
