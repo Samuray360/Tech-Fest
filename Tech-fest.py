@@ -65,13 +65,12 @@ def calculate_resistance(resistances, configuration):
 def main(page: ft.Page):
     page.title = "Physics Calculator"
     page.bgcolor = "#FCFBF4"
-    page.window.width = 800
-    page.window.height = 600
+    page.window.maximized = True  
     page.window.resizable = True
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
 
-    title = ft.Text("Physics Calculator", color="black", size=30)
+    title = ft.Text("Physics Calculator", color="black", size=30,)
 
     # Input Fields
     voltage_input = ft.TextField(label="Voltage (V)", width=200, color="black")
@@ -310,43 +309,46 @@ def main(page: ft.Page):
 
     # Pages
     home_view = ft.Container(
-        content=ft.Column([
-            title,
-            ft.Row([
-                ft.Column([
-                    ft.ElevatedButton(
-                        "Ohm's Law", on_click=lambda e: show_page(ohms_law_page, ohmslaw_explanation),
-                        width=200, height=50, style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20))
-                    ),
-                    ft.ElevatedButton(
-                        "Capacitance", on_click=lambda e: show_page(capacitance_page, capacitance_explanation),
-                        width=200, height=50, style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20))
-                    ),
-                    ft.ElevatedButton(
-                        "Resistance", on_click=lambda e: show_page(resistance_page, resistance_explanation),
-                        width=200, height=50, style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20))
-                    ),
-                    ft.ElevatedButton(
-                        "Electric Force", on_click=lambda e: show_page(electric_force_page, electric_force_explanation),
-                        width=200, height=50, style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20))
-                    ),
-                    ft.ElevatedButton(
-                        "Magnetic Field", on_click=lambda e: show_page(magneticfield_page, magneticfield_explanation),
-                        width=200, height=50, style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20))
-                    ),
-                    ft.ElevatedButton(
-                        "Electric Field", on_click=lambda e: show_page(electricfield_page, electricfield_explanation),
-                        width=200, height=50, style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20))
-                    ),
-                ])
-            ])
-        ], alignment=ft.alignment.center),
-        bgcolor="#FCFBF4",
-        width=page.window.width,
-        height=page.window.height,
-        visible=True,
-        alignment=ft.alignment.center
-    )
+    content=ft.Column([
+        title,
+        ft.ResponsiveRow([
+            ft.Column([
+                ft.ElevatedButton(
+                    "Ohm's Law", on_click=lambda e: show_page(ohms_law_page, ohmslaw_explanation),
+                    width=400, height=120, style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20))
+                ),
+                ft.ElevatedButton(
+                    "Capacitance", on_click=lambda e: show_page(capacitance_page, capacitance_explanation),
+                    width=400, height=120, style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20))
+                ),
+                ft.ElevatedButton(
+                    "Resistance", on_click=lambda e: show_page(resistance_page, resistance_explanation),
+                    width=400, height=120, style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20))
+                ),
+            ], spacing=20, alignment=ft.MainAxisAlignment.CENTER, col={"sm": 6, "md": 6, "lg": 6}),
+            ft.Column([
+                ft.ElevatedButton(
+                    "Electric Force", on_click=lambda e: show_page(electric_force_page, electric_force_explanation),
+                    width=400, height=120, style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20))
+                ),
+                ft.ElevatedButton(
+                    "Magnetic Field", on_click=lambda e: show_page(magneticfield_page, magneticfield_explanation),
+                    width=400, height=120, style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20))
+                ),
+                ft.ElevatedButton(
+                    "Electric Field", on_click=lambda e: show_page(electricfield_page, electricfield_explanation),
+                    width=400, height=120, style=ft.ButtonStyle(bgcolor="#849bff", color="white", shape=ft.RoundedRectangleBorder(radius=20))
+                ),
+            ], spacing=20, alignment=ft.MainAxisAlignment.CENTER, col={"sm": 6, "md": 6, "lg": 6}),
+        ], alignment=ft.MainAxisAlignment.CENTER, spacing=20),
+    ], alignment=ft.MainAxisAlignment.CENTER, spacing=30),
+    bgcolor="#FCFBF4",
+    width=page.window.width,
+    height=page.window.height,
+    visible=True,
+    alignment=ft.alignment.center,
+    padding=ft.padding.symmetric(vertical=50, horizontal=20)
+)
 
     ohms_law_page = ft.Container(
         content=ft.Column([
